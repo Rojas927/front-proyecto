@@ -1,0 +1,110 @@
+<?php 
+session_start();
+require_once("../CONEXION/CONEXION.PHP")
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9df778104c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos_login.css">
+    <title>Inicio Sesion</title>
+</head>
+<body>
+<div class="contenedor12">
+        <div class="form-container">
+            <div class="d-flex justify-content-start volverweb">
+            <a class="salirlogin" href="index.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;Volver</a>
+            </div>
+            <form action="VALIDA_LOGIN.PHP" method="post"> <!-- Cambié el método a POST -->
+                <br>
+                <figure>
+                    <img id="imglogin" src="avatar-azul.jpg" alt="imagen_inicio_sesion">
+                </figure>
+                <br>
+                <h3>BIENVENIDO</h3>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="TXTEMAIL" placeholder="Correo" required>
+                </div>
+                <div class="form-group text-center">
+                    <input class="form-control" type="password" name="TXTPSW" placeholder="Contraseña" required>
+                    <?php 
+                    ?>
+                </div>
+                <div class="form-group text-center" >
+                    <input class="btn btn-primary" type="submit" value="Iniciar Sesion"><br>
+                </div>
+                <div class="form-group text-center">
+                    <a href="RECUPERAR.html" class="olvcontra">¿Olvidó su contraseña?</a>
+                </div>
+                <div class="form-group text-center">
+                    <a href="REGISTRO.html" class="newregistrarse">¿No tienes cuenta? ¡Únete a nuestra familia 🐾!</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <?php 
+        if (isset($_SESSION['ERROR'])) {
+            $ERROR = $_SESSION['ERROR'];
+            echo "<script>alert ('Error de autenticación')</script>";
+            unset($_SESSION['ERROR']); // Limpiar el mensaje de error después de mostrarlo
+        }
+    ?>
+</body>
+<footer class="pie-pagina">
+    <div class="grupo-1">
+        <div class="box">
+            <figure>
+                <a href="#" aria-label="Los Potrillos Home">
+                    <img 
+                        src="logoprueba-removebg-preview.png" 
+                        alt="Los Potrillos Veterinary Services Logo" 
+                    >
+                </a>
+            </figure>
+        </div>
+        <div class="box">
+            <h2>Sobre Nosotros</h2>
+            <p>Fundado y dirigido por Fredy Alexy López Cortes, un profesional destacado en Medicina Veterinaria y Zootecnia.</p>
+            <p>Con formación académica de la UPTC Colombia y UNACH México, nos dedicamos a brindar servicios veterinarios de alta calidad.</p>
+            <nav>
+                <a href="SOBRE.html">Conoce Más</a>
+                <a href="SERVICIOS.html">Nuestros Servicios</a>
+            </nav>
+        </div>
+        <div class="box">
+            <h2>Síguenos</h2>
+            <div class="red-social">
+                <a 
+                    href="https://www.facebook.com/MgMvzFredyLopez" 
+                    class="fa-brands fa-facebook" 
+                    aria-label="Visita nuestro Facebook"
+                    rel="noopener noreferrer"
+                ></a>
+                <a 
+                    href="https://www.instagram.com/potrillos_vet" 
+                    class="fa-brands fa-instagram" 
+                    aria-label="Síguenos en Instagram"
+                    rel="noopener noreferrer"
+                ></a>
+                <a 
+                    href="#" 
+                    class="fa-brands fa-tiktok" 
+                    aria-label="Síguenos en TikTok"
+                    rel="noopener noreferrer"
+                ></a>
+            </div>
+        </div>
+    </div>
+    <div class="grupo-2">
+        <small>
+            &copy;2024 <b>Los Potrillos</b> - Todos los derechos reservados
+            <br>
+            <b>Desarrollado por: Daniel Rojas</b>
+        </small>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,1622 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    
+}
+
+/*HEADER------------------------------------------------------------------------------------------------*/
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.header::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(80px);
+    z-index: -1 ;
+}
+
+.logo {
+    max-height: 50px;
+}
+.navegador a{
+    font-size: 1.15rem;
+    color:  #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    position: relative;
+}
+.nava{
+    font-size: 1.15rem;
+    color:  #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    position: relative;
+}
+
+.nava::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.nava:hover::after {
+    width: 100%;
+}
+
+#check{
+   display: none; 
+}
+
+.iconos{
+    font-size: 2.8rem;
+    right: 5%;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+ } 
+
+ @media (max-width:992px){
+    .header{
+        padding: 1.3rem 5%;
+    }
+ }
+ @media (max-width:768px){
+    .iconos{
+        display: inline-flex;
+    }
+
+    #check:checked~.iconos #menu-icono{
+        display: none;
+    }
+
+    .iconos #cerrar-icono{
+        display: none ;
+    }
+
+    #check:checked~.iconos #cerrar-icono{
+        display: block;
+    }
+
+    .navegador{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0.5rem 1rem rgba(0, 0, 0, .1) ;
+        overflow: hidden;
+        transition: .3s ease;
+    }
+
+    #check:checked~.navegador{
+        height: 17.7rem;
+    }
+
+    .navegador a {
+        display: block;
+        font-size: 1.1rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: .3s ease;
+    }
+    #check:checked~.navegador a{
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+ }
+
+
+/*CONTENIDO INDEX----------------------------------------------------------------------------------------------------*/
+.hero {
+    background-image: url('../IMG/fondocorregcio_resized_top.jpeg');
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0 20px; /* Espacio lateral para evitar que el contenido toque los bordes */
+}
+.hero-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Añade un overlay oscuro para mejor legibilidad */
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px; /* Limita el ancho en pantallas grandes */
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary, .btn-success {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 300ms ease;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+}
+
+.btn-primary:hover {
+    background-color: #095791;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: #007BFF;
+}
+
+.btn-success {
+    background-color: #28a745; /* Fondo verde */
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Color más oscuro al pasar el mouse */
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2em; /* Reduce tamaño de fuente en pantallas medianas */
+    }
+
+    .hero p {
+        font-size: 1.2em; /* Reduce tamaño de fuente en pantallas medianas */
+    }
+
+    .buttons {
+        flex-direction: column; /* Coloca los botones en columna */
+        gap: 10px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5em; /* Reduce tamaño de fuente en pantallas pequeñas */
+    }
+
+    .hero p {
+        font-size: 1em; /* Reduce tamaño de fuente en pantallas pequeñas */
+    }
+
+    .btn-primary, .btn-secondary, .btn-success {
+        font-size: 0.9em; /* Reduce tamaño de fuente en botones en pantallas pequeñas */
+        padding: 8px 15px;
+    }
+}
+
+/*CARRUSEL----------------------------------------------------*/
+.slider-wrapper {
+    position: relative;
+    max-width: 95%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.slider {
+    display: flex;
+    width: 100%;
+    aspect-ratio: 16/9;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+.slider img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    scroll-snap-align: start;
+}
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 15px 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.3));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.slider-nav a {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(150,150,150,0.7);
+    transition: all 0.3s ease;
+}
+.slider-nav a:hover,
+.slider-nav a:focus {
+    background-color: rgba(255,255,255,0.9);
+    transform: scale(1.2);
+}
+/******************/
+
+.clinica-section {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 2rem;
+    min-height: 400px;
+}
+
+.clinica-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.clinica-img {
+    flex: 1;
+    min-width: 300px;
+}
+
+.clinica-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.clinica-contenido {
+    flex: 1;
+    padding: 1rem;
+}
+
+.clinica-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.clinica-text {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.mision-vision {
+    display: flex;
+    gap: 2rem;
+}
+
+.mv-contenedor {
+    flex: 1;
+}
+
+.mv-icon {
+    color: #ff6b6b;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .clinica-contenedor {
+        flex-direction: column;
+    }
+
+    .clinica-img {
+        min-width: 100%;
+    }
+
+    .mision-vision {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .clinica-contenido {
+        padding: 0;
+    }
+}
+
+
+/*FOOTER--------------------------------------------------------------------------------------------*/
+.pie-pagina{
+    width: 100%;
+    background-color: #16325B;
+}
+.pie-pagina .grupo-1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap:50px;
+    padding: 45px 0px;
+}
+.pie-pagina .grupo-1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pie-pagina .grupo-1 .box figure img{
+    width: 250px;
+}
+.pie-pagina .grupo-1 .box h2{
+color: #fff;
+margin-bottom: 25px;
+font-size: 20px;
+
+}
+.pie-pagina .grupo-1 .box P{
+    color: #efefef;
+    margin-bottom: 10px;
+}
+.pie-pagina .grupo-1 .red-social a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    margin-right: 10px;
+    background-color: #0d2033;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 300ms ease;
+}
+.pie-pagina .grupo-1 .red-social a:hover{
+    color: #007BFF;
+    background-color: #fff;
+}
+.pie-pagina .grupo-2{
+    background-color: #0d2033;
+    padding: 15px 10px;
+    text-align: center;
+    color: #fff;
+}
+.pie-pagina .grupo-2 small{
+    font-size: 15px;
+}
+/* Add subtle transitions to improve interactivity */
+.pie-pagina .grupo-1 .box nav a {
+    color: #efefef;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.pie-pagina .grupo-1 .box nav a:hover {
+    color: #007BFF;
+}
+@media screen and (max-width:800px) {
+    .pie-pagina .grupo-1{
+        width: 90%;
+        grid-template-columns: repeat(1,1fr);
+        grid-gap:30px;
+        padding: 35px 0px;
+        text-align: center;
+    }
+}
+
+/*PESTAÑA SOBRE NOSOTROS----------------------------------------------------------------------*/
+.banner {
+    height: 450px;
+    background-image: url('../IMG/relaxing-beagle-with-thoughtful-look-droopy-ears.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.banner-text {
+    color: #fff;
+    text-align: center;
+}
+
+/* Secciones de información */
+.info-section {
+    padding: 80px 0;
+    background-color: #0d2033;
+    color: #fff;
+}
+.info-section2 {
+    padding: 80px 0;
+}
+
+.info-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Galería */
+.gallery {
+    padding: 50px 0;
+    background-color: #333;
+    color: #fff;
+}
+
+.gallery-item {
+    margin-bottom: 30px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Mapa */
+.mapa-vet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.mapa-vet iframe {
+    max-width: 100%;
+    width: 800px;
+    height: 450px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#title-mapa {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+
+/*PESTAÑA SERVICIOS-----------------------------------------------------------------------------------*/
+/* Banner Styles */
+.banner2 {
+    height: 450px; /* Fija la altura */
+    background-image: url('../IMG/bannerservicios2.jpeg'); /* Ruta a tu imagen */
+    border-bottom: 3px solid #fff; /* Línea blanca al final */
+    background-size: cover; /* Ajusta el tamaño para cubrir el contenedor */
+    background-position: center; /* Centra la imagen horizontal y verticalmente */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    position: relative; /* Útil si añades contenido adicional como texto */
+    margin-top: 5px;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Añade un overlay oscuro para mejor legibilidad */
+}
+
+.banner-text {
+    max-width: 800px;
+    color: #fff;
+    padding: 20px;
+}
+
+.banner-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.banner-text .lead {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 0 15px 5px rgba(0, 255, 128, 0.6); /* Efecto de brillo verde */
+  }
+  
+  .card img {
+    transition: transform 0.3s, filter 0.3s;
+    height: 200px;
+  }
+  
+  
+  
+/* Contenedor de Modales */
+.contenedor-modales {
+    width: 100%;
+    min-height: 300px;
+    background-color: #0d2033;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+    .banner-text h1 {
+        font-size: 2.8rem;
+    }
+    
+    .contenedor-modales {
+        padding: 30px 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .banner2 {
+        height: 400px;
+    }
+    
+    .banner-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .banner-text .lead {
+        font-size: 1.1rem;
+    }
+    
+    .contenedor-modales {
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+    }
+    .card{
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .banner2 {
+        height: 300px;
+    }
+    
+    .banner-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .banner-text .lead {
+        font-size: 1rem;
+    }
+    
+    .contenedor-modales {
+        padding: 20px 10px;
+    }
+}
+/*ESTILOS LOGIN Y REGISTRO-----------------------------------------------------------------------------------------------*/
+.contenedor12 {
+    background-image: url(../IMG/fondo-perro-login.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh; /* Cubre toda la altura de la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.form-container {
+ width: 100%;
+    max-width: 400px; /* Limita el ancho máximo en pantallas grandes */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px; 
+}
+#imglogin{
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    display: inline-flex;
+}
+@media (max-width: 768px) {
+    .contenedor12 {
+        background-image: url(../IMG/pet-accessories-still-life-with-food-bowl-collar.jpg); /* Imagen de menor resolución o adaptada */
+        background-size: cover;
+        background-position: center;
+    }
+    .form-container {
+        padding: 15px; /* Reduce el padding en pantallas más pequeñas */
+        margin: 10px; /* Ajusta el margen */
+        max-width: 90%; /* Ocupa el 90% del ancho en dispositivos móviles */
+    }
+}
+.contenedor13 {
+  background-image: url(../IMG/close-up-pet-accessories.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Cubre toda la altura de la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.form-container-registro {
+  width: 100%;
+     max-width: 500px; /* Limita el ancho máximo en pantallas grandes */
+     padding: 20px;
+     background-color: rgba(255, 255, 255, 0.3); /* Fondo translúcido */
+     backdrop-filter: blur(10px); /* Efecto de desenfoque */
+     border-radius: 10px;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     text-align: center;
+     margin: 20px; 
+ }
+ .dashboard {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.dashboard2 {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: white;
+    padding: 20px;
+    position: fixed; /* Fijo al lado izquierdo */
+    overflow-y: auto; /* Permite scroll si el menú es muy largo */
+}
+.sidebar2 {
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: white;
+    padding: 20px;
+    position: fixed; /* Fijo al lado izquierdo */
+    overflow-y: auto; /* Permite scroll si el menú es muy largo */
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+.sidebar-menu a:hover {
+    background: #444;
+}
+
+.main-content {
+    margin-left: 250px; /* Deja espacio para la barra lateral */
+    padding-top: 100px;
+    flex: 1;
+    padding: 20px;
+    background: #f0f2f5;
+}
+.main-content2 {
+    margin-left: 250px; /* Deja espacio para la barra lateral */
+    flex: 1;
+    padding: 20px;
+    background: #f0f2f5;
+}
+
+.profile-section, .pets-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.pet-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.pet-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.medical-history {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: start;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard2 {
+        flex-direction: column;
+    }
+
+    .sidebar2 {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 10px;
+    }
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar{
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 10px;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sidebar-menu a {
+        flex: 1;
+        text-align: center;
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .main-content2 {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+    .profile-section, 
+    .pets-section {
+        padding: 15px;
+    }
+
+    .pet-card img {
+        order: -1; /* Fuerza la imagen a aparecer primero */
+        margin-bottom: 15px;
+    }
+
+    .pet-card div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pet-photo {
+        width: 200px;
+        height: 200px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .form-group input {
+        width: 100%;
+    }
+    .btn {
+        margin: 5px;
+        padding: 10px 15px;
+        border-radius: 4px;
+    }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+    .sidebar-menu {
+        flex-direction: column;
+    }
+
+    .sidebar-menu a {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .pet-photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    #titlebienvenido {
+        text-align: center;
+    }
+    .btn {
+        margin: 5px;
+        padding: 10px 15px;
+        border-radius: 4px;
+    }
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+/*MODAL------------------------------------------------*/
+/*.boton-modal{
+    padding: 40px;
+    background-color: #f3f3f3;
+}
+.boton-modal label{
+    padding: 10px 15px;
+    background-color: #5488a3;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+.boton-modal label:hover{
+    background-color: #185e83 ;
+}
+#btn-modal{
+    display: none;
+
+}
+.contenedor-modal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(144, 148, 150, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.contenido-modal{
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+.contenido-modal label{
+    margin-bottom: 15px;
+
+}
+.contenido-modal input{
+    border-radius: 20px;
+    width: 30%;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.534) ;
+    transition: border-color 0.3s, color 0.3s;
+}
+.contenido-modal .btn-cerrar{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-end;
+}*/
+/* Estilos para la tabla de usuarios */
+.tabla-crud {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-crud th {
+    background-color: #4CAF50;
+    color: #ffffff;
+    padding: 12px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.tabla-crud td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.tabla-crud tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-crud tr:hover {
+    background-color: #d1f2e5;
+}
+
+.paginatext {
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 5px;
+    margin: 0 3px;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.paginatext:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.buscador{
+    text-align: right;
+}
+.buscador input{
+    border-radius: 20px;
+    width: 20%;
+    padding: 5px;
+    margin: 1px 0;
+    text-align: center;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: Arial, sans-serif;
+   }
+   .buscador input :focus{
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+    background-color: #f1f9f4;
+   }
+.buscador label{
+    font-size: 18px;
+}
+.main-content-user {
+    margin-left: 250px; /* Deja espacio para la barra lateral */
+    flex: 1;
+    padding: 20px;
+    background: url(../IMG/top-view-pet-accessories-food.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+
+}
+.formulario1 {
+    width: 900px;
+    max-width: 100%; /* Permite que se adapte en pantallas pequeñas */
+    height: auto;
+    padding: 10px 10px;
+    background-color: rgba(255, 255, 255, 0.151); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-weight: 400;
+    margin: 20px; /* Agrega un poco de espacio alrededor */
+}
+.input-ru{
+    border-radius: 4px;
+    width: 30%;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.534) ;
+    transition: border-color 0.3s, color 0.3s;
+   }
+   .input-ru:focus{
+    outline:none;
+    border-color:#0d47a1 ;
+    color: #3e413e ;
+    font-weight: bold;
+   }
+   .input-ru1{
+    border-radius: 4px;
+    width: 21%;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.534) ;
+    transition: border-color 0.3s, color 0.3s;
+   }
+   .input-ru1:focus{
+    outline:none;
+    border-color:#0d47a1 ;
+    color: #3e413e ;
+    font-weight: bold;
+   }
+   .input-ru2{
+    border-radius: 4px;
+    width: 35%;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.534) ;
+    transition: border-color 0.3s, color 0.3s;
+   }
+   .input-ru2:focus{
+    outline:none;
+    border-color:#0d47a1 ;
+    color: #3e413e ;
+    font-weight: 400;
+   }
+   
+   .textarea-ru {
+    border-radius: 4px;
+    width: 75%;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.534);
+    transition: border-color 0.3s, color 0.3s;
+    padding: 10px; /* Espacio adicional para el texto */
+    resize: none; /* Para deshabilitar el ajuste manual si no lo deseas */
+    overflow: auto; /* Evita barras de desplazamiento */
+}
+
+    .textarea-ru:focus {
+    outline: none;
+    border-color: #0d47a1;
+    color: #3e413e;
+    font-weight: 400;
+    }
+
+/* Ajuste para hacer que el textarea crezca automáticamente */
+    .textarea-ru.auto-expand {
+    height: auto; /* Permite que el textarea crezca según el contenido */
+    min-height: 38px; /* Altura inicial (ajustable) */
+    max-height: 150px; /* Altura máxima */
+    }
+    
+    .formulario-serv{
+        width: 600px;
+        height: auto;
+        padding: 10px 10px;
+        background-color: rgba(255, 255, 255, 0.151); /* Fondo translúcido */
+         backdrop-filter: blur(10px); /* Efecto de desenfoque */
+         border-radius: 10px;
+         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding-left: 50px;
+        color: black;
+        font-weight: 400;
+        margin-top: 30px;
+        align-items: center;
+        
+    } 
+    .input-rs2{
+        border-radius: 4px;
+        width: 80%;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.534) ;
+        transition: border-color 0.3s, color 0.3s;
+       }
+       .input-rs2:focus{
+        outline:none;
+        border-color:#0d47a1 ;
+        color: #3e413e ;
+        font-weight: 400;
+       }
+
+       .input-rs1{
+        border-radius: 4px;
+        width: 50%;
+        text-align: start;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.534) ;
+        transition: border-color 0.3s, color 0.3s;
+        text-align: center;
+       }
+       .input-rs1:focus{
+        outline:none;
+        border-color:#0d47a1 ;
+        color: #3e413e ;
+        font-weight: 400;
+       }
+       
+       .textarea-ru2 {
+        border-radius: 4px;
+        width: 90%;
+        text-align: start;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.534);
+        transition: border-color 0.3s, color 0.3s;
+        padding: 10px; /* Espacio adicional para el texto */
+        resize: vertical; /* Para deshabilitar el ajuste manual si no lo deseas */
+        overflow: auto; /* Evita barras de desplazamiento */
+    }
+    
+        .textarea-ru2:focus {
+        outline: none;
+        border-color: #0d47a1;
+        color: #3e413e;
+        font-weight: 400;
+        }
+    
+    /* Ajuste para hacer que el textarea crezca automáticamente */
+        .textarea-ru2.auto-expand {
+        height: auto; /* Permite que el textarea crezca según el contenido */
+        min-height: 38px; /* Altura inicial (ajustable) */
+        max-height: 150px; /* Altura máxima */
+        }
+
+        .main-content-perfil {
+            margin-left: 250px; /* Deja espacio para la barra lateral */
+            flex: 1;
+            padding: 20px;
+            background: url(../IMG/flat-lay-toys-with-food-bowl-fur-brush-dogs.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        
+        }
+        .contenedor-registro {
+            width: 100%;
+               max-width: 700px; /* Limita el ancho máximo en pantallas grandes */
+               padding: 25px;
+               background-color: rgba(255, 255, 255, 0.3); /* Fondo translúcido */
+               backdrop-filter: blur(10px); /* Efecto de desenfoque */
+               border-radius: 10px;
+               box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+               margin: 20px;
+               justify-content: space-between;
+           }
+           .contenedor-registro h2{
+            text-align: center;
+           }
+           .input-rc{
+            border-radius: 4px;
+            width: 25%;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.534) ;
+            transition: border-color 0.3s, color 0.3s;
+           }
+           .input-rc:focus{
+            outline:none;
+            border-color:#0d47a1 ;
+            color: #3e413e ;
+            font-weight: bold;
+           }
+
+
+           /*******************************/
+           .contenedor-historia {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .datos-mascota {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+        }
+        
+        .foto-mascota {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            flex-shrink: 0; /* Evita que la foto se encoja */
+        }
+        
+        .foto-mascota img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .info-mascota, .info-propietario {
+            flex: 1;
+            min-width: 200px; /* Asegura un ancho mínimo antes de wrap */
+        }
+        
+        /* Nuevo estilo para la sección de la clínica */
+        .info-clinica {
+            width: 200px;
+            text-align: center;
+            padding: 10px;
+            border-left: 1px solid #dee2e6;
+            flex-shrink: 0; /* Evita que se encoja */
+        }
+        
+        .logo-clinica {
+            width: 150px;
+            height: 80px;
+            margin: 0 auto 10px;
+        }
+        
+        .logo-clinica img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .info-clinica h3 {
+            color: #1a4b84;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .info-clinica p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .info-mascota h2 {
+            color: #1a4b84;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .info-mascota p, .info-propietario p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        
+        .historia-clinica {
+            margin-top: 30px;
+        }
+        
+        .historia-clinica h3 {
+            background-color: #1a4b84;
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .boton-descargar {
+            margin-top: 30px;
+            text-align: right;
+        }
+        
+        .boton-descargar button {
+            background-color: #1a4b84;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .boton-descargar button:hover {
+            background-color: #153a69;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .datos-mascota {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-clinica {
+                border-left: none;
+                border-top: 1px solid #dee2e6;
+                width: 100%;
+                padding-top: 15px;
+                margin-top: 15px;
+            }
+        }
+
+
+        /* Estilo general para la factura */
+.invoice-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.invoice-title {
+    text-align: left;
+    color: #007bff;
+}
+
+.invoice-info {
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.invoice-body {
+    margin-top: 20px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.invoice-table th {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.invoice-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.invoice-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.main-content-fact {
+    flex: 1;
+    padding: 20px;
+    margin-left: 250px; /* Deja espacio para la barra lateral */
+}
+
+/***************/
+.sidebar-menu {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0;       /* Asegúrate de quitar cualquier margen/padding extra */
+    margin: 0;
+}
+.sidebar-menu ul {
+    list-style: none; /* También para sublistas dentro del dropdown */
+}
+.sidebar-menu .dropdown-toggle {
+    cursor: pointer;
+    display: block;
+    padding: 15px 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-menu .dropdown-toggle:hover {
+    background: #444;
+}
+
+.sidebar-menu .dropdown-item {
+    padding: 10px 20px;
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.sidebar-menu .dropdown-item:hover {
+    background: #555;
+    color: white;
+}
+
+.buscadormas {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Color suave de fondo */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.buscadormas label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.buscadormas select {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.buscadormas select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.25);
+    outline: none;
+}
+
+.buscadormas button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buscadormas button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.custom-btn {
+    background-color: #25D366; /* Color de WhatsApp */
+    border-color: #25D366;
+    color: white;
+    padding: 10px 20px; /* Relleno igual que Bootstrap */
+    font-size: 1rem; /* Tamaño de fuente de `btn-success` */
+    border-radius: 0.375rem; /* Bordes redondeados */
+    display: inline-block; /* Para mantener el mismo comportamiento de botón */
+    text-align: center;
+}
+
+.custom-btn:hover {
+    background-color: #20b957; /* Color un poco más oscuro para el hover */
+    border-color: white;
+    color: white;
+}
+
+

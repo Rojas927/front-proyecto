@@ -1,0 +1,176 @@
+<?php 
+session_start();
+require_once("../CONEXION/CONEXION.PHP");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9df778104c.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos_login.css">
+    <title>Inicio Sesion</title>
+</head>
+<body>
+ <header class="header-registro">
+ <div class="col-auto">
+    <a href="index.html" class="btn btn-danger mb-3"><i class="fa-solid fa-arrow-left" style="color: #ffffff;">
+    </i>&nbsp;Volver</a>
+  </div>
+ </header>
+<div class="contenedor13">
+  <div class="contenedor-registro">
+<form action="" method="post">
+      <div>
+      <h3 class="title">Datos de Usuario</h3>
+      </div>
+      <div class="inputBox">
+        <span>Nombres</span>
+        <input type="text" name="TXTNOMBRE" required class="input-r">
+        &nbsp;&nbsp;&nbsp;
+        <span>Apellidos</span>
+        <input type="text" name="TXTAPELLIDO" required class="input-r"  >
+      </div>
+      <br>
+      <div class="inputBox">
+        <span>Tipo de documento</span>
+        <select name="T_DOC" required class="input-r2">
+        <option value="" disabled selected>Seleccione una opción</option>
+          <?php 
+          // Esta consulta se usa para llamar los datos de la tabla tipo_documento
+          $tdocumento = "SELECT * FROM tipo_documento";
+          $resultado = mysqli_query($conexion, $tdocumento);
+          // Modificación: Cambiar el valor del option a IDTIPO_DOC para coincidir con la clave foránea
+          while ($valores = mysqli_fetch_assoc($resultado)) {
+              // Se asigna el IDTIPO_DOC como valor y el NOMBRE como texto visible
+              echo '<option value="' . $valores['IDTIPO_DOC'] . '">' . $valores['NOMBRE'] . '</option>';
+          }
+          ?>
+        </select>
+        &nbsp;&nbsp;
+        <span>Numero</span>
+        <input type="text" name="TXTNUMERO_DOC" required class="input-r1">
+      </div>
+      <br>
+      <div class="inputBox">
+        <span>Telefono</span>
+        <input type="text" name="TXTTELEFONO" required class="input-r">&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
+        <span>Dirección</span>
+        <input type="text" name="TXTDIRECCION" required class="input-r">
+      </div>
+      <br>
+      <div class="inputBox">
+        <span>Correo</span>
+        <input type="text" name="TXTCORREO" required class="input-r">&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;
+        <span>Contraseña</span>
+        <input type="text" name="TXTPSW" required class="input-r"> 
+      </div>
+      <br>
+      <input type="submit" value="Confirmar" class="btn btn-success">
+  </div>
+</div>
+<?php
+if (!empty($_POST)) {
+    // Validación de campos obligatorios
+    if (empty($_POST['TXTNUMERO_DOC'])) {
+        echo "<script>alert ('Todos los campos son obligatorios.')</script>";
+        echo "<script> window.open('REGISTRO.php','_self')</script>";
+    } else {
+        // Recibir datos del formulario
+        $NOM= $_POST['TXTNOMBRE']; 
+        $APE= $_POST['TXTAPELLIDO'];  
+        $T_DOC= $_POST['T_DOC'];  // El valor de T_DOC ahora es el IDTIPO_DOC
+        $NUM_DOC= $_POST['TXTNUMERO_DOC'];
+        $DIR= $_POST['TXTDIRECCION']; 
+        $TEL= $_POST['TXTTELEFONO']; 
+        $CORREO=$_POST['TXTCORREO'];
+        // Encriptar la contraseña usando password_hash
+        $PSW = password_hash($_POST['TXTPSW'], PASSWORD_DEFAULT);
+        
+        // Verificar si el número de documento ya está registrado
+        $query = mysqli_query($conexion, "SELECT count(IDUSUARIO) AS IDS FROM USUARIO WHERE NUMERO='$NUM_DOC'");
+        $i = 0;
+        while ($fila = mysqli_fetch_assoc($query)) {
+            $cuenta = $fila['IDS'];
+        }
+        
+        if ($cuenta > 0) {
+            // Si el documento ya existe, mostrar un mensaje y redirigir al registro
+            echo "<script>alert ('La cedula ya se encuentra registrada')</script>";
+            echo "<script> window.open('REGISTRO.PHP','_self')</script>";
+        } else {
+            // Consulta para insertar el nuevo usuario
+            // Se inserta el IDTIPO_DOC y la contraseña encriptada
+            $SQL="INSERT INTO `usuario` (`IDUSUARIO`, `IDROL`, `NOMBRES`, `APELLIDOS`, `IDTIPO_DOC`, `NUMERO`, `TELEFONO`, `DIRECCION`, `CORREO`, `CONTRASENA`) 
+            VALUES (NULL, '3', '$NOM', '$APE', '$T_DOC', '$NUM_DOC', '$TEL', '$DIR', '$CORREO', '$PSW');";
+            $RESULT = MYSQLI_QUERY($conexion,$SQL) OR DIE (MYSQLI_ERROR($conexion));
+    
+            // Mensaje de éxito y redirección al login
+            echo '<script type="text/javascript"> alert("Registro exitoso"); </script>';
+            echo '<script type="text/javascript"> window.open("LOGIN.PHP","_SELF");</script>';
+        }
+    }
+}
+?>
+</form>
+</div>
+<footer class="pie-pagina">
+    <div class="grupo-1">
+        <div class="box">
+            <figure>
+                <a href="#" aria-label="Los Potrillos Home">
+                    <img 
+                        src="logoprueba-removebg-preview.png" 
+                        alt="Los Potrillos Veterinary Services Logo" 
+                    >
+                </a>
+            </figure>
+        </div>
+        <div class="box">
+            <h2>Sobre Nosotros</h2>
+            <p>Fundado y dirigido por Fredy Alexy López Cortes, un profesional destacado en Medicina Veterinaria y Zootecnia.</p>
+            <p>Con formación académica de la UPTC Colombia y UNACH México, nos dedicamos a brindar servicios veterinarios de alta calidad.</p>
+            <nav>
+                <a href="SOBRE.html">Conoce Más</a>
+                <a href="SERVICIOS.html">Nuestros Servicios</a>
+            </nav>
+        </div>
+        <div class="box">
+            <h2>Síguenos</h2>
+            <div class="red-social">
+                <a 
+                    href="https://www.facebook.com/MgMvzFredyLopez" 
+                    class="fa-brands fa-facebook" 
+                    aria-label="Visita nuestro Facebook"
+                    rel="noopener noreferrer"
+                ></a>
+                <a 
+                    href="https://www.instagram.com/potrillos_vet" 
+                    class="fa-brands fa-instagram" 
+                    aria-label="Síguenos en Instagram"
+                    rel="noopener noreferrer"
+                ></a>
+                <a 
+                    href="#" 
+                    class="fa-brands fa-tiktok" 
+                    aria-label="Síguenos en TikTok"
+                    rel="noopener noreferrer"
+                ></a>
+            </div>
+        </div>
+    </div>
+    <div class="grupo-2">
+        <small>
+            &copy;2024 <b>Los Potrillos</b> - Todos los derechos reservados
+            <br>
+            <b>Desarrollado por: Daniel Rojas</b>
+        </small>
+    </div>
+</footer>
+</body>
+<?php include("../Templates/FOOTER.PHP") ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
