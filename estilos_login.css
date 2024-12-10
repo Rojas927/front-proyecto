@@ -9,7 +9,7 @@
     box-sizing: border-box;
 }
 .contenedor12 {
-    background-image: url(../IMG/fondo-perro-login.jpg);
+    background-image: url(fondo-perro-login.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -39,7 +39,7 @@
 }
 @media (max-width: 768px) {
     .contenedor12 {
-        background-image: url(../IMG/pet-accessories-still-life-with-food-bowl-collar.jpg); /* Imagen de menor resolución o adaptada */
+        background-image: url(pet-accessories-still-life-with-food-bowl-collar.jpg); /* Imagen de menor resolución o adaptada */
         background-size: cover;
         background-position: center;
     }
@@ -50,7 +50,7 @@
     }
 }
 .contenedor13 {
-  background-image: url(../IMG/close-up-pet-accessories.jpg);
+  background-image: url(close-up-pet-accessories.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh; /* Cubre toda la altura de la pantalla */
@@ -60,7 +60,7 @@
   padding: 20px;
 }
  .contenedor-recuperar {
-    background-image: url(../IMG/flat-lay-toys-with-food-bowl-fur-brush-dogs.jpg);
+    background-image: url(flat-lay-toys-with-food-bowl-fur-brush-dogs.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh; /* Cubre toda la altura de la pantalla */
@@ -71,7 +71,7 @@
   }
   @media (max-width: 768px) {
     .contenedor-recuperar {
-        background-image: url(../IMG/pet-accessories-still-life-with-food-bowl-collar.jpg); /* Imagen de menor resolución o adaptada */
+        background-image: url(pet-accessories-still-life-with-food-bowl-collar.jpg); /* Imagen de menor resolución o adaptada */
         background-size: cover;
         background-position: center;
     }
