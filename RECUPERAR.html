@@ -1,7 +1,3 @@
-<?php
-session_start();
-require_once('../CONEXION/CONEXION.PHP');
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,6 +5,7 @@ require_once('../CONEXION/CONEXION.PHP');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos_login.css">
+     <link rel="stylesheet" href="estilos.css">
     <script src="https://kit.fontawesome.com/9df778104c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Recuperar Contraseña</title>
@@ -30,35 +27,6 @@ require_once('../CONEXION/CONEXION.PHP');
                 <input class="btn btn-primary" type="submit" name="actualizar" value="Confirmar">
             </div>
         </form>
-
-        <?php
-        if (isset($_POST['actualizar'])) {
-            // Limpiar y validar los datos del formulario
-            $email = mysqli_real_escape_string($conexion, $_POST['txtemail']);
-            $contrasena = mysqli_real_escape_string($conexion, $_POST['txtwp']);
-            
-            // Verificar si el correo existe en la base de datos
-            $sql = "SELECT * FROM USUARIO WHERE CORREO = '$email'";
-            $resultado = mysqli_query($conexion, $sql);
-            
-            if (mysqli_num_rows($resultado) > 0) {
-                // Encriptar la nueva contraseña
-                $hashed_contrasena = password_hash($contrasena, PASSWORD_BCRYPT);
-                
-                // Actualizar la contraseña en la base de datos
-                $update_sql = "UPDATE USUARIO SET CONTRASENA = '$hashed_contrasena' WHERE CORREO = '$email'";
-                if (mysqli_query($conexion, $update_sql)) {
-                    echo "<script>alert('Contraseña Actualizada');</script>";
-                    echo "<script>window.open('LOGIN.PHP', '_self');</script>";
-                } else {
-                    echo "<script>alert('Error al actualizar la contraseña');</script>";
-                }
-            } else {
-                echo "<script>alert('Correo no encontrado');</script>";
-            }
-        }
-        ?>
-
     </div>
 </div>
 <footer class="pie-pagina">
